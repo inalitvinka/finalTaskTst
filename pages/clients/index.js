@@ -25,8 +25,8 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             <div><p>The biggest balance:  <span>$ ${getMax}</span</p></div>
             </div>`
         ;
-        // data.forEach(item => {
-        //     if (item.isActive) item.style.cssText= `color: red;`;
+        // let newData = data.map(item => {
+        //     if (item.isActive) console.log(item);
         // })
         const clients = data.map(item => `<div class="client">
             <p>${item.name}</p> 
