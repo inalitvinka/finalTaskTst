@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register form</title>
+    <link rel="stylesheet" href="/assets/styles/normalize.css">
+    <link rel="stylesheet" href="/pages/login/style.css">
+</head>
+<body>
+  <div class="container">
+    <form action="#" id="form" name="mainForm" class="form">
+      <h2 class="form-title">
+        <a href="/pages/login/index.html" class="form-register" name="nameLink">Sign in</a> 
+        <a href="/pages/register/index.html" class="form-register active" name="nameLink">Sign up</a>
+      </h2>
+      <div class="form-item">
+        <input data-field="Enter email correctly *" id="formEmail" type="text" name="email" class="form-input" placeholder="e-mail *">
+        <div class="error"></div>
+      </div>
+      <div class="form-item">
+        <input data-field="Enter password correctly *" id="password" type="text" name="password" class="form-input" placeholder="password *">
+        <div class="error"></div>
+      </div>
+      <div class="form-item">
+        <input data-field="Confirm password correctly *" id="passwordRepeat" type="text" name="passwordRepeat" class="form-input passwordRepeat" placeholder="confirm password *">
+        <div class="error"></div>
+      </div>
+      <button type="submit" id="check" class="form-button" name="formBtn">Sign up</button>
+      <div class="form-checkbox">
+        <input type="checkbox" id="checkbox" name="agreement" class=".form-input form-checkbox_input">
+        <label for="checkbox" class="form-checkbox_label">Accept privacy policy</label>
+      </div>
+      <!-- <p class="form-item login">Already a member? <a href="/pages/login/index.html" class="form-register form-login" name="nameLink">Login</a></p> -->
+    </form> 
+  </div> 
+            <!-- <button id="check">Login</button> -->
+            <div class="app"><h1 class="name">Hi!</h1></div> 
+    <script src="/pages/register/index.js"></script>
+</body>
+</html>
