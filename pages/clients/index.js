@@ -34,7 +34,7 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             <p> ${item.email}</p>
             <p>${item.phone}</p>
             <p>${item.balance}</p>
-            <p>${item.registered}</p>
+            <p>${item.registered.slice(0, 10)}</p>
             <button class="cliBtn" data-id="${item._id}">×</button><br></div>`
         );
         const arrToString = clients.join('');
