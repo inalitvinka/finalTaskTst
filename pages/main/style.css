@@ -232,10 +232,13 @@ table {
     border: 0;
     font-size: 2rem;
     text-align: center;
-    border:solid .1rem rgb(230, 179, 51, .7);
+    border-bottom: solid .1rem rgb(230, 179, 51, .7);
+    border-left: solid .1rem rgb(230, 179, 51, .7);
     border-radius: .6rem;
+
 } 
 .back-btn:hover {
+    border: solid .1rem rgb(230, 179, 51, .7);
     border-color: #e6b333;
     color: #e6b333;
 }
