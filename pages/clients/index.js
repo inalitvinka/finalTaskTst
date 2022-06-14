@@ -15,12 +15,14 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
         console.log(data[0]);
         const countFimale = data.filter(item => item.gender === 'female');
         const countMale = data.filter(item => item.gender === 'male');
-        // let balanceArr = data.map(item => item.balance.slice(1));
-        // console.log(balanceArr);
+
+        let balanceArr = data.map(item => parseFloat(item.balance.slice(1).replace(/[,]/gi, '')));
+        const getMax = balanceArr.reduce((acc, item) => acc < item ? item : acc);
+        
         appInfoCli.innerHTML = `<div class="info-cli">
             <div><p>Number of men: <span>${countFimale.length}</span></p></div>
             <div><p>Number of women: <span>${countMale.length}</span</p></div>
-            <div><p>The biggest balance: <span>${countMale.length}</span</p></div>
+            <div><p>The biggest balance:  <span>$ ${getMax}</span</p></div>
             </div>`
         ;
         // data.forEach(item => {
