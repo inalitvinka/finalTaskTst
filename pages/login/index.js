@@ -10,84 +10,84 @@ const formLinkLogin = document.querySelector('.login');
 
 
 let isValidate;
-    let usersData = [];
+let usersData = [];
 
-    const regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
-    const regExpPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+const regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
+const regExpPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
-    const submit = () => {
-        form.submit();
-        alert('Data sent');
-        form.reset();
-        location.href = '/pages/main/index.html';
-    };
-    const addError = item => {
-        item.nextElementSibling.innerHTML = item.dataset.field;
-        item.classList.add( 'form-input_error' );
-        btnSubmit.disabled = true;
-        isValidate = false;
+const submit = () => {
+    form.submit();
+    alert('Data sent');
+    form.reset();
+    location.href = '/pages/main/index.html';
+};
+const addError = item => {
+    item.nextElementSibling.innerHTML = item.dataset.field;
+    item.classList.add( 'form-input_error' );
+    btnSubmit.disabled = true;
+    isValidate = false;
+}
+const removeError = item => {
+    item.nextElementSibling.innerHTML = '';
+    item.classList.remove( 'form-input_error' );
+    btnSubmit.disabled = false;
+    isValidate = true;
+}
+const checkUsers = () => {
+    let userDataObj = {
+        email: email.value,
+        pass: password.value,
     }
-    const removeError = item => {
-        item.nextElementSibling.innerHTML = '';
-        item.classList.remove( 'form-input_error' );
-        btnSubmit.disabled = false;
-        isValidate = true;
-    }
-    const checkUsers = () => {
-        let userDataObj = {
-            email: email.value,
-            pass: password.value,
-        }
-        // usersData.filter(item => {
-        //     if (item !== userDataObj.email) usersData.push(userDataObj);
-        //     else console.log('lol');
-        // })
-        // usersData.push(userDataObj);
-        // console.log(userDataObj);
-        // console.log(usersData);
-    }
+    // usersData.filter(item => {
+    //     if (item !== userDataObj.email) usersData.push(userDataObj);
+    //     else console.log('lol');
+    // })
+    // usersData.push(userDataObj);
+    // console.log(userDataObj);
+    // console.log(usersData);
+}
 
-    const validateForm = (item) => {
-        // let it = item.value;
-        let itemVal = item.value.trim();
-        // console.log(itemVal, itemVal.length);
-        // console.log(it, it.length);
-        if(item.name === 'email') {
-            if(!regExpEmail.test(itemVal) || itemVal === '') addError(item);
-            else removeError(item);
-        }
-        if(item.name === 'password') {
-            if(!regExpPassword.test(itemVal) || itemVal === '') addError(item);
-            else removeError(item);
-        }
-    };
+const validateForm = (item) => {
+    // let it = item.value;
+    let itemVal = item.value.trim();
+    // console.log(itemVal, itemVal.length);
+    // console.log(it, it.length);
+    if(item.name === 'email') {
+        if(!regExpEmail.test(itemVal) || itemVal === '') addError(item);
+        else removeError(item);
+    }
+    if(item.name === 'password') {
+        if(!regExpPassword.test(itemVal) || itemVal === '') addError(item);
+        else removeError(item);
+    }
+};
 
-    formInputs.forEach(item => {
-        item.addEventListener('blur', event => validateForm(item));
-    });
+formInputs.forEach(item => {
+    item.addEventListener('blur', event => validateForm(item));
+});
     
 
-    form.addEventListener( 'submit', event => {
-        event.preventDefault();
+form.addEventListener( 'submit', event => {
+    event.preventDefault();
         
-        formInputs.forEach( item => {
-            if ( item.value === '' ) addError(item);
-            else removeError(item);
+    formInputs.forEach( item => {
+        if ( item.value === '' ) addError(item);
+        else removeError(item);
 
-            item.addEventListener('focus', event => {
-                if (item.nextElementSibling) {
-                    item.nextElementSibling.innerHTML = '';
-                    item.classList.remove( 'form-input_error' );
-                };
-            });
+        item.addEventListener('focus', event => {
+            if (item.nextElementSibling) {
+                item.nextElementSibling.innerHTML = '';
+                item.classList.remove( 'form-input_error' );
+            };
         });
-        
-        if (isValidate === true) {
-            btnSubmit.disabled = false;
-            checkUsers();
-            submit();
-        };
     });
+        
+    if (isValidate === true) {
+        btnSubmit.disabled = false;
+        checkUsers();
+        submit();
+    };
+});
 
 
 
@@ -164,8 +164,6 @@ form.addEventListener('submit', event => {
 
 //     email.value = '';
 //     password.value = '';
-//     // добавить проверку на валидацию https://www.youtube.com/watch?v=Ie7VMD1tt5Q
-//     // регистрация пользователя https://www.youtube.com/watch?v=V6T7SIbCFg0&t=58s
 // });
 
 
