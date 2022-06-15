@@ -28,13 +28,22 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
         // let newData = data.map(item => {
         //     if (item.isActive) console.log(item);
         // })
+
+        // можно ли вывести на страницу через функцию??
+        /*
+        const regDate = () => {
+            return data.map(item => item.registered.slice(0, 10).split('-').reverse().join('-'));
+        };
+        console.log(regDate());
+        */
+
         const clients = data.map(item => `<div class="client">
             <p>${item.name}</p> 
             <p>${item.company}</p>
             <p> ${item.email}</p>
             <p>${item.phone}</p>
             <p>${item.balance}</p>
-            <p>${item.registered.slice(0, 10)}</p>
+            <p>${item.registered.slice(0, 10).split('-').reverse().join('-')}</p>
             <button class="cliBtn" data-id="${item._id}">×</button><br></div>`
         );
         const arrToString = clients.join('');
