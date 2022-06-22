@@ -37,10 +37,10 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
         console.log(regDate());
         */
 
-        const clients = data.map(item => `<div class="client">
+        const clients = data.map(item => `<div class="client ${item.isActive ? 'isActive' : null}">
             <p>${item.name}</p> 
             <p>${item.company}</p>
-            <p> ${item.email}</p>
+            <p>${item.email}</p>
             <p>${item.phone}</p>
             <p>${item.balance}</p>
             <p>${item.registered.slice(0, 10).split('-').reverse().join('-')}</p>
@@ -73,14 +73,14 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             data = filterTasks;
             console.log(data.length);
             console.log(filterTasks.length);
-            const clients = data.map(item => `<div class="client">
+            const clients = data.map(item => `<div class="client ${item.isActive ? 'isActive' : null}">
                     <p>${item.name}</p> 
                     <p>${item.company}</p>
                     <p>${item.email}</p>
                     <p>${item.phone}</p>
                     <p>${item.balance}</p>
-                    <p>${item.registered}</p>
-                    <button class="cliBtn data-id=${item._id}">×</button><br></div>`
+                    <p>${item.registered.slice(0, 10).split('-').reverse().join('-')}</p>
+                    <button class="cliBtn" data-id=${item._id}>×</button><br></div>`
                 );
             const arrToString = clients.join('');
             appClients.innerHTML = arrToString;
