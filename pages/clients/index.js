@@ -5,6 +5,13 @@ const backBtn = document.querySelector('.back-btn');
 const appClients = document.querySelector('.clients');
 const appInfoCli = document.querySelector('.info-cli');
 
+const popap = document.querySelector('.popap');
+const btnClosePop = document.querySelector('.popap-close');
+const btnAgreePop = document.querySelector('.popap-agree');
+const popapInform = document.querySelector('.popap-inform');
+const btnCloseInform = document.querySelector('.popap-inform__close');
+
+
 const exitThePage = () =>  location.href = '/pages/login/index.html';
 exitBtn.addEventListener('click', exitThePage);
 
@@ -63,39 +70,55 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             </div>`
         );
         
+        const showPopapInform = () => {
+            console.log('popap');
+            popapInform.style.visibility = 'visible';
+            btnCloseInform.addEventListener('click', event => popapInform.style.visibility = 'hidden');
+        }
+
         appClients.addEventListener('click', event => {
             event.preventDefault();
             if (event.target.tagName !== 'BUTTON') return;
-            confirm('Are you sure you want to delete?');
+
+            popap.style.visibility = 'visible';
+            //confirm('Are you sure you want to delete?');
             console.log(event.target);
             const btnIdDelete = event.target.dataset.id;
-            const filterTasks = data.filter(item => item._id !== btnIdDelete);
-            data = filterTasks;
-            console.log(data.length);
-            console.log(filterTasks.length);
-            const clients = data.map(item => `<div class="client ${item.isActive ? 'isActive' : null}">
-                    <p>${item.name}</p> 
-                    <p>${item.company}</p>
-                    <p>${item.email}</p>
-                    <p>${item.phone}</p>
-                    <p>${item.balance}</p>
-                    <p>${item.registered.slice(0, 10).split('-').reverse().join('-')}</p>
-                    <button class="cliBtn" data-id=${item._id}>×</button><br></div>`
+            btnAgreePop.addEventListener('click', event => {
+                const filterTasks = data.filter(item => item._id !== btnIdDelete);
+                data = filterTasks;
+                console.log(data.length);
+                console.log(filterTasks.length);
+                const clients = data.map(item => `<div class="client ${item.isActive ? 'isActive' : null}">
+                        <p>${item.name}</p> 
+                        <p>${item.company}</p>
+                        <p>${item.email}</p>
+                        <p>${item.phone}</p>
+                        <p>${item.balance}</p>
+                        <p>${item.registered.slice(0, 10).split('-').reverse().join('-')}</p>
+                        <button class="cliBtn" data-id=${item._id}>×</button><br></div>`
+                    );
+                const arrToString = clients.join('');
+                appClients.innerHTML = arrToString;
+                appClients.insertAdjacentHTML(
+                    'afterbegin',
+                    `<div class="client name">
+                        <p>name</p> 
+                        <p>company</p>
+                        <p>email</p>
+                        <p>phone</p>
+                        <p>balance</p>
+                        <p>registered</p>
+                        <button class="cliBtn" style="visibility: hidden;">×</button><br>
+                    </div>`
                 );
-            const arrToString = clients.join('');
-            appClients.innerHTML = arrToString;
-            appClients.insertAdjacentHTML(
-                'afterbegin',
-                `<div class="client name">
-                    <p>name</p> 
-                    <p>company</p>
-                    <p>email</p>
-                    <p>phone</p>
-                    <p>balance</p>
-                    <p>registered</p>
-                    <button class="cliBtn" style="visibility: hidden;">×</button><br>
-                </div>`
-            );
+
+                popap.style.visibility = 'hidden';
+                showPopapInform();
+            });
+
+            btnClosePop.addEventListener('click', event => popap.style.visibility = 'hidden');
+            
         });
     })
     .catch(error => console.error('Error', error))

@@ -137,9 +137,6 @@ body {
     margin-bottom: 7.5rem;
 }
 .cli {
-    /* background-color: rgb(26, 31, 37, .65);
-    border-radius: 2rem;
-    border: solid .1rem #22272d; */
     font-size: 2rem;
     color: rgb(26, 31, 37);
 }
@@ -171,7 +168,6 @@ body {
     align-items: center;
     padding: 0 .1rem;
     color: rgb(255, 255, 255);
-    /* border:solid .1rem #fbc43b; */
     font-size: 1.1rem;
     max-width: 100%;
     height: 3rem;
@@ -193,23 +189,28 @@ body {
     width: 12rem;
     text-align: center;
 }
-.cliBtn {
+.cliBtn,
+.popap-close,
+.popap-inform__close {
     font-family: inherit;
     cursor: pointer;
     background-color: inherit;
     color: rgb(251, 196, 59, .8);
-    /* color: rgba(32, 200, 212, .8); */
     padding: .1rem .5rem;
     border: 0;
     font-size: 3rem;
     text-align: center;
 } 
-.cliBtn:hover {
+.cliBtn:hover,
+.popap-close:hover,
+.popap-inform__close:hover {
     border:solid .1rem #fbc43b;
     border-radius: .6rem;
     color: #fbc43b;
 }
-.cliBtn:active {
+.cliBtn:active,
+.popap-close:active,
+.popap-inform__close:active {
     top: .3rem;
     box-shadow: 0 .2rem 0 #a68227;
 }
@@ -222,7 +223,8 @@ table {
     justify-content: end;
     padding: 1rem 3rem;
 }
-.back-btn {
+.back-btn,
+.popap-agree {
     font-family: inherit;
     cursor: pointer;
     background-color: inherit;
@@ -237,12 +239,14 @@ table {
     border-radius: .6rem;
 
 } 
-.back-btn:hover {
+.back-btn:hover,
+.popap-agree:hover {
     border: solid .1rem rgb(230, 179, 51, .7);
     border-color: #e6b333;
     color: #e6b333;
 }
-.back-btn:active {
+.back-btn:active,
+.popap-agree:active {
     top: .3rem;
     box-shadow: 0 .3rem 0 #a68227;
 }
@@ -251,4 +255,65 @@ table {
 }
 .isActive {
     color: aqua;
+}
+.popap {
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    top: 0;
+    left: 0;
+    overflow: auto;
+    overflow-x: hidden;
+    /* transition: all 0.5s ease 0s; */
+}
+.popap-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    margin-top: 2rem;
+}
+.popap-content {
+    background-color: inherit;
+    border:solid .1rem #fbc43b;
+    border-radius: .6rem;
+    color: rgb(255, 255, 255);
+    max-width: 70rem;
+    width: 100%;
+    padding: 3rem 3rem 0;
+}
+.popap-text {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+.popap-btn,
+.popap-inform__btn {
+    text-align: end;
+}
+.popap-agreement {
+    text-align: end;
+    padding-right: 2rem;
+}
+.popap-inform {
+    visibility: hidden;
+    position: fixed;
+    width: 30%;
+    height: 15%;
+    background-color: rgba(255, 255, 255, .8);
+    bottom: 0;
+    right: 0;
+    border-radius: .6rem;
+}
+.popap-inform__content {
+    padding: 1rem 3rem;
+    color: rgb(0, 0, 0, .95);
+    font-size: 2.2rem;
+    text-align: center;
+}
+.popap-inform__close {
+    color: #c8930b;
 }
