@@ -8,12 +8,19 @@ document.addEventListener( 'DOMContentLoaded', event => {
     const checkboxItem = form.agreement;
     const formInputs = document.querySelectorAll('.form-input');
     
-
+    const popupReg = document.querySelector('.popupreg');
+    const popupRegBtn = document.querySelector('.popupreg-agree');
+    
     let isValidate;
     let usersData = [];
 
     const regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
     const regExpPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
+    const showPopupReg = () => {
+        popupReg.style.visibility = 'visible';
+        popupRegBtn.addEventListener('click', event => popupReg.style.visibility = 'hidden');
+    };
 
     const submit = () => {
         if(checkboxItem.checked) {
@@ -21,7 +28,7 @@ document.addEventListener( 'DOMContentLoaded', event => {
             alert('Data sent');
             form.reset();
             location.href = '/pages/main/index.html';
-        } else alert('Accept privacy policy');   
+        } else showPopupReg();   
     };
     const addError = item => {
         item.nextElementSibling.innerHTML = item.dataset.field;
