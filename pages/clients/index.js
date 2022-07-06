@@ -44,7 +44,7 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             <p>${item.phone}</p>
             <p>${item.balance}</p>
             <p>${item.registered.slice(0, 10).split('-').reverse().join('-')}</p>
-            <button class="cliBtn" data-id="${item._id}">×</button><br></div>`
+            <button class="cliBtn" data-id="${item._id}">&times;</button><br></div>`
         );
         const arrToString = clients.join('');
         appClients.innerHTML = arrToString;
