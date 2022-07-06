@@ -190,8 +190,8 @@ body {
     text-align: center;
 }
 .cliBtn,
-.popap-close,
-.popap-inform__close {
+.popup-close,
+.popup-inform__close {
     font-family: inherit;
     cursor: pointer;
     background-color: inherit;
@@ -202,15 +202,15 @@ body {
     text-align: center;
 } 
 .cliBtn:hover,
-.popap-close:hover,
-.popap-inform__close:hover {
+.popup-close:hover,
+.popup-inform__close:hover {
     border:solid .1rem #fbc43b;
     border-radius: .6rem;
     color: #fbc43b;
 }
 .cliBtn:active,
-.popap-close:active,
-.popap-inform__close:active {
+.popup-close:active,
+.popup-inform__close:active {
     top: .3rem;
     box-shadow: 0 .2rem 0 #a68227;
 }
@@ -224,7 +224,7 @@ table {
     padding: 1rem 3rem;
 }
 .back-btn,
-.popap-agree {
+.popup-agree {
     font-family: inherit;
     cursor: pointer;
     background-color: inherit;
@@ -240,13 +240,13 @@ table {
 
 } 
 .back-btn:hover,
-.popap-agree:hover {
+.popup-agree:hover {
     border: solid .1rem rgb(230, 179, 51, .7);
     border-color: #e6b333;
     color: #e6b333;
 }
 .back-btn:active,
-.popap-agree:active {
+.popup-agree:active {
     top: .3rem;
     box-shadow: 0 .3rem 0 #a68227;
 }
@@ -256,7 +256,7 @@ table {
 .isActive {
     color: aqua;
 }
-.popap {
+.popup {
     visibility: hidden;
     position: fixed;
     width: 100%;
@@ -268,7 +268,7 @@ table {
     overflow-x: hidden;
     /* transition: all 0.5s ease 0s; */
 }
-.popap-body {
+.popup-body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -276,7 +276,7 @@ table {
     padding: 3rem 1rem;
     margin-top: 2rem;
 }
-.popap-content {
+.popup-content {
     background-color: inherit;
     border:solid .1rem #fbc43b;
     border-radius: .6rem;
@@ -285,20 +285,20 @@ table {
     width: 100%;
     padding: 3rem 3rem 0;
 }
-.popap-text {
+.popup-text {
     font-size: 2.5rem;
     margin: 2rem 0;
     text-align: center;
 }
-.popap-btn,
-.popap-inform__btn {
+.popup-btn,
+.popup-inform__btn {
     text-align: end;
 }
-.popap-agreement {
+.popup-agreement {
     text-align: end;
     padding-right: 2rem;
 }
-.popap-inform {
+.popup-inform {
     visibility: hidden;
     position: fixed;
     width: 30%;
@@ -308,12 +308,12 @@ table {
     right: 0;
     border-radius: .6rem;
 }
-.popap-inform__content {
+.popup-inform__content {
     padding: 1rem 3rem;
     color: rgb(0, 0, 0, .95);
     font-size: 2.2rem;
     text-align: center;
 }
-.popap-inform__close {
+.popup-inform__close {
     color: #c8930b;
 }

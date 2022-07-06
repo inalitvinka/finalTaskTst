@@ -5,11 +5,11 @@ const backBtn = document.querySelector('.back-btn');
 const appClients = document.querySelector('.clients');
 const appInfoCli = document.querySelector('.info-cli');
 
-const popap = document.querySelector('.popap');
-const btnClosePop = document.querySelector('.popap-close');
-const btnAgreePop = document.querySelector('.popap-agree');
-const popapInform = document.querySelector('.popap-inform');
-const btnCloseInform = document.querySelector('.popap-inform__close');
+const popup = document.querySelector('.popup');
+const btnClosePop = document.querySelector('.popup-close');
+const btnAgreePop = document.querySelector('.popup-agree');
+const popupInform = document.querySelector('.popup-inform');
+const btnCloseInform = document.querySelector('.popup-inform__close');
 
 
 const exitThePage = () =>  location.href = '/pages/login/index.html';
@@ -70,17 +70,17 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             </div>`
         );
         
-        const showPopapInform = () => {
+        const showPopupInform = () => {
             console.log('popap');
-            popapInform.style.visibility = 'visible';
-            btnCloseInform.addEventListener('click', event => popapInform.style.visibility = 'hidden');
+            popupInform.style.visibility = 'visible';
+            btnCloseInform.addEventListener('click', event => popupInform.style.visibility = 'hidden');
         }
 
         appClients.addEventListener('click', event => {
             event.preventDefault();
             if (event.target.tagName !== 'BUTTON') return;
 
-            popap.style.visibility = 'visible';
+            popup.style.visibility = 'visible';
             //confirm('Are you sure you want to delete?');
             console.log(event.target);
             const btnIdDelete = event.target.dataset.id;
@@ -113,11 +113,11 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
                     </div>`
                 );
 
-                popap.style.visibility = 'hidden';
-                showPopapInform();
+                popup.style.visibility = 'hidden';
+                showPopupInform();
             });
 
-            btnClosePop.addEventListener('click', event => popap.style.visibility = 'hidden');
+            btnClosePop.addEventListener('click', event => popup.style.visibility = 'hidden');
             
         });
     })
