@@ -7,7 +7,7 @@ const hero = document.querySelector('#hero');
 
 app.innerHTML = `<div>The application is signed in from the device: <br><p class="hero-data">${navigator.appVersion}</p></div>`;
 
-const exitThePage = () =>  location.href = '/pages/login/index.html';
+const exitThePage = () =>  location.href = '/';
 console.dir(navigator)
 
 exitBtn.addEventListener('click', exitThePage);

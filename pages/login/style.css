@@ -126,8 +126,8 @@ body {
     box-shadow: 0 .2rem 0 #70581a;
 }
 .form-button:disabled {
-    /* border: solid .1rem #70581a; */
-    background-color: #ae800b;
+    box-shadow: none;
+    background-color: #c8930b;
 }
 .form-checkbox_label {
     line-height: 140%;
@@ -214,6 +214,7 @@ a.form-register:hover {
     max-width: 45rem;
     width: 100%;
     padding: 3rem 2rem 2rem;
+    box-shadow: .1rem .18rem .1rem rgb(26, 31, 37, .2);
 }
 .popupreg-title {
     font-size: 1.5rem;

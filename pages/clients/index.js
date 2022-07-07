@@ -12,7 +12,7 @@ const popupInform = document.querySelector('.popup-inform');
 const btnCloseInform = document.querySelector('.popup-inform__close');
 
 
-const exitThePage = () =>  location.href = '/pages/login/index.html';
+const exitThePage = () =>  location.href = '/';
 exitBtn.addEventListener('click', exitThePage);
 
 
