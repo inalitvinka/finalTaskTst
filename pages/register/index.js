@@ -48,27 +48,6 @@ document.addEventListener( 'DOMContentLoaded', event => {
         modalBtn.addEventListener('click', event => modal.hidden = true)
     };
     
-
-    const submit = () => {
-        if(checkboxItem.checked) {
-            form.submit();
-            alert('Data sent');
-            form.reset();
-            location.href = '/pages/main/index.html';
-        } else showModal();   
-    };
-    const addError = item => {
-        item.nextElementSibling.innerHTML = item.dataset.field;
-        item.classList.add( 'form-input_error' );
-        btnSubmit.disabled = true;
-        isValidate = false;
-    }
-    const removeError = item => {
-        item.nextElementSibling.innerHTML = '';
-        item.classList.remove( 'form-input_error' );
-        btnSubmit.disabled = false;
-        isValidate = true;
-    }
     const saveUsers = () => {
         let userDataObj = {
             email: email.value.trim(),
@@ -92,14 +71,37 @@ document.addEventListener( 'DOMContentLoaded', event => {
 
             // console.log(data[0].email !== userDataObj.email)
             data.length ? (data.forEach(item => item.email !== userDataObj.email ? data.push(userDataObj) : console.log('lol'))) : data.push(userDataObj);
-            
+            // if (data.length === 0) data.push(userDataObj);
+            //  else data.map(item => item.email !== userDataObj.email ? data.push(userDataObj) : console.log('lol'));
             // data.push(userDataObj);
             localStorage.setItem('userDataObj', JSON.stringify(data));
             
         }
         addUserDataToLocalStorage();
-         
     }
+
+    const submit = () => {
+        if(checkboxItem.checked) {
+            saveUsers();
+            form.submit();
+            alert('Data sent');
+            form.reset();
+            location.href = '/pages/main/index.html';
+        } else showModal();   
+    };
+    const addError = item => {
+        item.nextElementSibling.innerHTML = item.dataset.field;
+        item.classList.add( 'form-input_error' );
+        btnSubmit.disabled = true;
+        isValidate = false;
+    }
+    const removeError = item => {
+        item.nextElementSibling.innerHTML = '';
+        item.classList.remove( 'form-input_error' );
+        btnSubmit.disabled = false;
+        isValidate = true;
+    }
+    
 
     const validateForm = (item) => {
         let itemVal = item.value.trim();
@@ -153,7 +155,7 @@ document.addEventListener( 'DOMContentLoaded', event => {
         
         if (isValidate === true) {
             btnSubmit.disabled = false;
-            saveUsers();
+            
             submit();
             //form.reset();
         };
