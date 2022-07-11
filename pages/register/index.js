@@ -8,8 +8,8 @@ document.addEventListener( 'DOMContentLoaded', event => {
     const checkboxItem = form.agreement;
     const formInputs = document.querySelectorAll('.form-input');
     
-    const popupReg = document.querySelector('.popupreg');
-    const popupRegBtn = document.querySelector('.popupreg-agree');
+    // const popupReg = document.querySelector('.popupreg');
+    // const popupRegBtn = document.querySelector('.popupreg-agree');
     
     let isValidate;
     let usersData = [];
@@ -17,10 +17,37 @@ document.addEventListener( 'DOMContentLoaded', event => {
     const regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;
     const regExpPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
-    const showPopupReg = () => {
-        popupReg.style.visibility = 'visible';
-        popupRegBtn.addEventListener('click', event => popupReg.style.visibility = 'hidden');
+    // const showPopupReg = () => {
+    //     popupReg.style.visibility = 'visible';
+    //     popupRegBtn.addEventListener('click', event => popupReg.style.visibility = 'hidden');
+    // };
+
+    // =======MODAL=======
+    const modal = document.getElementById('modal')
+
+    const createModal = (title, text) => {
+        const modalHtml = `
+            <div class="modal-overlay">
+                <div class="modal-window">
+                    <div class="modal-content">
+                        <div class="modal-title"><p>${title}</p></div>
+                        <div class="modal-text"><p>${text}</p></div>
+                        <div class="modal-button">
+                            <button class="modal-btn">ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        `
+        modal.innerHTML = modalHtml;
+    }
+    const showModal = () =>{
+        modal.hidden = false;
+        createModal('Confirm the action on the page', 'Accept privacy policy');
+        const modalBtn = modal.querySelector('.modal-btn');
+        modalBtn.addEventListener('click', event => modal.hidden = true)
     };
+    
 
     const submit = () => {
         if(checkboxItem.checked) {
@@ -28,7 +55,7 @@ document.addEventListener( 'DOMContentLoaded', event => {
             alert('Data sent');
             form.reset();
             location.href = '/pages/main/index.html';
-        } else showPopupReg();   
+        } else showModal();   
     };
     const addError = item => {
         item.nextElementSibling.innerHTML = item.dataset.field;
@@ -44,23 +71,38 @@ document.addEventListener( 'DOMContentLoaded', event => {
     }
     const saveUsers = () => {
         let userDataObj = {
-            email: email.value,
-            pass: password.value,
+            email: email.value.trim(),
+            pass: password.value.trim(),
+            date: new Date().toJSON(),
+            id: new Date().getTime(),
         }
-        // usersData.filter(item => {
-        //     if (item !== userDataObj.email) usersData.push(userDataObj);
-        //     else console.log('lol');
-        // })
-        // usersData.push(userDataObj);
-        // console.log(userDataObj);
-        // console.log(usersData);
+        
+        // first get the data that is already in localStorage
+        // and add new data here
+        // then overwrite this array
+        const getDataFromLocalStorage = () => JSON.parse(localStorage.getItem('userDataObj') || '[]'); // if we get nothing from local storage, we parse an empty array    
+        const addUserDataToLocalStorage = () => {
+            const data = getDataFromLocalStorage();
+            console.log(data); // all is a js array => it can be added new data
+            
+            //============NEW DATE==============
+            // console.log(data[0].date);
+            // console.log(new Date(data[0].date).toDateString());
+            
+
+            // console.log(data[0].email !== userDataObj.email)
+            data.length ? (data.forEach(item => item.email !== userDataObj.email ? data.push(userDataObj) : console.log('lol'))) : data.push(userDataObj);
+            
+            // data.push(userDataObj);
+            localStorage.setItem('userDataObj', JSON.stringify(data));
+            
+        }
+        addUserDataToLocalStorage();
+         
     }
 
     const validateForm = (item) => {
-        // let it = item.value;
         let itemVal = item.value.trim();
-        // console.log(itemVal, itemVal.length);
-        // console.log(it, it.length);
         if(item.name === 'email') {
             if(!regExpEmail.test(itemVal) || itemVal === '') addError(item);
             else removeError(item);
@@ -113,6 +155,7 @@ document.addEventListener( 'DOMContentLoaded', event => {
             btnSubmit.disabled = false;
             saveUsers();
             submit();
+            //form.reset();
         };
     });
 });        

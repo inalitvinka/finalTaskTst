@@ -207,7 +207,8 @@ a.form-register:hover {
     align-items: start;
     padding: 0 1rem;
 }
-.popupreg-content {
+.popupreg-content,
+.modal {
     background-color: rgba(255, 255, 255, .8);
     border-radius: .6rem;
     color: rgb(0, 0, 0, .8);
@@ -252,9 +253,94 @@ a.form-register:hover {
     box-shadow: 0 .3rem 0 #a68227;
 }
 
+/* new modal styles */
+.modal-overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .01);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.modal-window {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 0 1rem;
+}
+.modal-content {
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: .6rem;
+    color: rgb(0, 0, 0, .8);
+    max-width: 45rem;
+    width: 100%;
+    padding: 3rem 2rem 2rem;
+    box-shadow: .1rem .18rem .1rem rgb(26, 31, 37, .2);
+}
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: .6rem;
+    text-transform: uppercase;
+}
+.modal-text {
+    font-size: 1.4rem;
+}
+.modal-button {
+    text-align: end;
+    padding-right: 3rem;
+}
+.modal-btn {
+    font-family: inherit;
+    cursor: pointer;
+    background-color: inherit;
+    color: rgb(230, 179, 51, .7);
+    padding: .5rem 3rem;
+    border: 0;
+    font-size: 1.8rem;
+    text-align: center;
+    border-bottom: solid .1rem rgb(230, 179, 51, .7);
+    border-left: solid .1rem rgb(230, 179, 51, .7);
+    border-radius: .6rem;
 
+}
+.modal-btn:hover {
+    border: solid .1rem rgb(230, 179, 51, .7);
+    border-color: #e6b333;
+    color: #e6b333;
+}
+.modal-btn:active {
+    top: .3rem;
+    box-shadow: 0 .3rem 0 #a68227;
+}
 
-
+/*  new modal styles */
+/* .modal-overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .01);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.modal-window {
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: .6rem;
+    color: rgb(0, 0, 0, .8);
+    max-width: 45rem;
+    width: 100%;
+    margin: 10rem auto;
+    box-shadow: .1rem .18rem .1rem rgb(26, 31, 37, .2);
+} */
+.div {
+    width: 10rem;
+    height: 10rem;
+    background-color: aqua;
+}
+.pip {
+    font-size: 5rem;
+    color: aqua;
+}
 
 
 

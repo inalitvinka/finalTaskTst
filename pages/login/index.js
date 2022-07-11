@@ -1,5 +1,8 @@
 'use strict';
 
+// import { createModal } from '../utils/modal.js';
+// createModal();
+
 const form = document.forms.mainForm;
 const email = form.email;
 const password = form.password;
@@ -32,25 +35,50 @@ const removeError = item => {
     btnSubmit.disabled = false;
     isValidate = true;
 }
+
+// ======MODAL========
+const modal = document.getElementById('modal')
+const createModal = (title, text) => {
+    // const modal = document.createElement('div');
+    // modal.classList.add('modal-overlay');
+    const modalHtml = `
+        <div class="modal-overlay">
+            <div class="modal-window">
+                <div class="modal-content">
+                    <div class="modal-title"><p>${title}</p></div>
+                    <div class="modal-text"><p>${text}</p></div>
+                    <div class="modal-button">
+                        <button class="modal-btn">ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    `
+    modal.innerHTML = modalHtml;
+}
+const showModal = () => {
+    createModal('There is no such user', 'First u need to register');
+    const modalBtn = modal.querySelector('.modal-btn');
+    modalBtn.addEventListener('click', event => location.href = '/pages/register/index.html')
+}
+//showModal();
+
+// =========LOCAL STORAGE ARRAY===========
 const checkUsers = () => {
-    let userDataObj = {
-        email: email.value,
-        pass: password.value,
+    let userDataLogObj = {
+        email: email.value.trim(),
+        pass: password.value.trim(),
     }
-    // usersData.filter(item => {
-    //     if (item !== userDataObj.email) usersData.push(userDataObj);
-    //     else console.log('lol');
-    // })
-    // usersData.push(userDataObj);
-    // console.log(userDataObj);
-    // console.log(usersData);
+    console.log(userDataLogObj);
+    const getDataFromLocalStorage = () => JSON.parse(localStorage.getItem('userDataObj') || '[]');
+    const dataFromLocalStorage = getDataFromLocalStorage();
+    console.log(dataFromLocalStorage);
+    // it only works if there is something in the array that is received!!!
+    dataFromLocalStorage.forEach( item => item.email === userDataLogObj.email ? submit() : showModal());
 }
 
 const validateForm = (item) => {
-    // let it = item.value;
     let itemVal = item.value.trim();
-    // console.log(itemVal, itemVal.length);
-    // console.log(it, it.length);
     if(item.name === 'email') {
         if(!regExpEmail.test(itemVal) || itemVal === '') addError(item);
         else removeError(item);
@@ -84,7 +112,7 @@ form.addEventListener( 'submit', event => {
     if (isValidate === true) {
         btnSubmit.disabled = false;
         checkUsers();
-        submit();
+        //submit();
     };
 });
 
@@ -144,16 +172,6 @@ form.addEventListener('submit', event => {
 });
 
 */
-
-
-
-
-
-
-
-
-
-
 
 // button.addEventListener('click', event => {
 //     event.preventDefault();

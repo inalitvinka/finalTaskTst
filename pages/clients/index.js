@@ -15,13 +15,27 @@ const btnCloseInform = document.querySelector('.popup-inform__close');
 const exitThePage = () =>  location.href = '/';
 exitBtn.addEventListener('click', exitThePage);
 
+//==========LOADING FUNCTION===============
+const loadDiv = document.createElement('div');
+loadDiv.className = 'loading';
+document.body.prepend(loadDiv);
+
+const showLoading = () => loadDiv.hidden = false;
+showLoading();
+const closeLoading = () => loadDiv.hidden = true;
+closeLoading();
 
 fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json')
     .then(response => response.json())
     .then(data => {
-        console.log(data[0]);
-        const countFimale = data.filter(item => item.gender === 'female');
-        const countMale = data.filter(item => item.gender === 'male');
+        console.log(data);
+        //============NEW DATE==============
+        console.log(data[0].registered);
+        console.log(new Date(data[0].registered).toDateString());
+        // console.log(new Date(data[0].registered).getDate());
+        
+        const countFimale = data.filter(item => item.gender === 'male');
+        const countMale = data.filter(item => item.gender === 'female');
 
         let balanceArr = data.map(item => parseFloat(item.balance.slice(1).replace(/[,]/gi, '')));
         const getMax = balanceArr.reduce((acc, item) => acc < item ? item : acc);
@@ -32,17 +46,6 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             <div><p>The biggest balance:  <span>$ ${getMax}</span</p></div>
             </div>`
         ;
-        // let newData = data.map(item => {
-        //     if (item.isActive) console.log(item);
-        // })
-
-        // можно ли вывести на страницу через функцию??
-        /*
-        const regDate = () => {
-            return data.map(item => item.registered.slice(0, 10).split('-').reverse().join('-'));
-        };
-        console.log(regDate());
-        */
 
         const clients = data.map(item => `<div class="client ${item.isActive ? 'isActive' : null}">
             <p>${item.name}</p> 
@@ -55,8 +58,8 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
         );
         const arrToString = clients.join('');
         appClients.innerHTML = arrToString;
-        console.log(data.length);
-        console.log(clients.length);
+        // console.log(data.length);
+        // console.log(clients.length);
         appClients.insertAdjacentHTML(
             'afterbegin',
             `<div class="client name">
@@ -112,6 +115,19 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
                         <button class="cliBtn" style="visibility: hidden;">×</button><br>
                     </div>`
                 );
+                
+                const countFimale = data.filter(item => item.gender === 'male');
+                const countMale = data.filter(item => item.gender === 'female');
+
+                let balanceArr = data.map(item => parseFloat(item.balance.slice(1).replace(/[,]/gi, '')));
+                const getMax = balanceArr.reduce((acc, item) => acc < item ? item : acc);
+                
+                appInfoCli.innerHTML = `<div class="info-cli">
+                    <div><p>Number of men: <span>${countFimale.length}</span></p></div>
+                    <div><p>Number of women: <span>${countMale.length}</span</p></div>
+                    <div><p>The biggest balance:  <span>$ ${getMax}</span</p></div>
+                    </div>`
+                ;
 
                 popup.style.visibility = 'hidden';
                 showPopupInform();
