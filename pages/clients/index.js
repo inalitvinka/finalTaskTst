@@ -19,11 +19,12 @@ exitBtn.addEventListener('click', exitThePage);
 const loadDiv = document.createElement('div');
 loadDiv.className = 'loading';
 document.body.prepend(loadDiv);
+loadDiv.hidden = true;
 
 const showLoading = () => loadDiv.hidden = false;
-showLoading();
+// showLoading();
 const closeLoading = () => loadDiv.hidden = true;
-closeLoading();
+// closeLoading();
 
 fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json')
     .then(response => response.json())
@@ -46,7 +47,7 @@ fetch('https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1
             <div><p>The biggest balance:  <span>$ ${getMax}</span</p></div>
             </div>`
         ;
-
+        // arrToString.length ? appClients.innerHTML = arrToString : showLoading();
         const clients = data.map(item => `<div class="client ${item.isActive ? 'isActive' : null}">
             <p>${item.name}</p> 
             <p>${item.company}</p>

@@ -1,3 +1,4 @@
-export function createModal () {
-    console.log('showModal')
+function create () {
+    console.log('lol')
 };
+export default create;

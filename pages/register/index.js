@@ -68,13 +68,19 @@ document.addEventListener( 'DOMContentLoaded', event => {
             // console.log(data[0].date);
             // console.log(new Date(data[0].date).toDateString());
             
-
-            // console.log(data[0].email !== userDataObj.email)
-            data.length ? (data.forEach(item => item.email !== userDataObj.email ? data.push(userDataObj) : console.log('lol'))) : data.push(userDataObj);
-            // if (data.length === 0) data.push(userDataObj);
-            //  else data.map(item => item.email !== userDataObj.email ? data.push(userDataObj) : console.log('lol'));
-            // data.push(userDataObj);
-            localStorage.setItem('userDataObj', JSON.stringify(data));
+            // const variable = userDataObj.email ? data.push(userDataObj) : 'lol';
+            // console.log(variable);
+            if (data.length === 0) data.push(userDataObj);
+            if (data.length) {
+                data.forEach(item => {
+                    if (item.email === userDataObj.email) return null;
+                    else  {
+                        localStorage.setItem('userDataObj', JSON.stringify(data));
+                        data.push(userDataObj)};
+            })
+        }
+            console.log(data)
+            // localStorage.setItem('userDataObj', JSON.stringify(data));
             
         }
         addUserDataToLocalStorage();
@@ -157,7 +163,7 @@ document.addEventListener( 'DOMContentLoaded', event => {
             btnSubmit.disabled = false;
             
             submit();
-            //form.reset();
+            // form.reset();
         };
     });
 });        

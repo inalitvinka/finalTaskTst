@@ -1,7 +1,10 @@
 'use strict';
 
-// import { createModal } from '../utils/modal.js';
-// createModal();
+import get, {add} from './import.js';
+import create from '../utils/modal.js';
+get();
+create();
+add();
 
 const form = document.forms.mainForm;
 const email = form.email;
@@ -39,8 +42,6 @@ const removeError = item => {
 // ======MODAL========
 const modal = document.getElementById('modal')
 const createModal = (title, text) => {
-    // const modal = document.createElement('div');
-    // modal.classList.add('modal-overlay');
     const modalHtml = `
         <div class="modal-overlay">
             <div class="modal-window">
